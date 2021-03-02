@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../lib/ec-canvas/ec-canvas"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#199ED8",
+  "navigationBarTitleText": "办公情况报告",
+  "navigationBarTextStyle": "white"
+}

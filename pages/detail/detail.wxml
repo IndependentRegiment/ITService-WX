@@ -1,0 +1,221 @@
+<!--pages/detail/detail.wxml-->
+<view class="main" wx:if="{{hasDone}}">
+  <view class="text" style="margin-top: 10rpx"><span class="dot">*</span>紧急度:
+    <view class="urgent">
+      <block wx:for="{{key - 0}}" wx:key="index">
+        <image class="star-image" style="left: {{item*100}}rpx" src="{{key > item ?selectedSrc : normalSrc}}">
+          <view class="item" data-key="{{item+1}}"></view>
+        </image>
+      </block>
+    </view>
+  </view>
+  <view class="text" style="margin-top:0rpx"><span class="dot">*</span>故障类型: <view class="inputView"> <input
+        class="input {{canChange?'':'bgcInput'}}" data-name='info.problemType' value='{{info.problemType}}'
+        disabled="true" /></view>
+  </view>
+  <view class="text"><span class="dot">*</span>预约时间: <view class="inputView"> <input
+        class="input {{canChange?'':'bgcInput'}}" value='{{resData.appointmentCreate}}--{{resData.appointmentEnd}}'
+        disabled="true" /></view>
+  </view>
+  <view class="text"><span class="dot">*</span>状态: <view class="inputView"> <input
+        class="input {{canChange?'':'bgcInput'}}" data-name='status' value='{{status}}' disabled="true" /></view>
+  </view>
+  <view class="text"><span class="dot"></span>故障描述: <view class="inputView"> 
+    <view 
+        class="{{canChange?'':'bgcInput'}}" data-name='description' 
+        disabled="true" style="box-sizing: border-box;padding: 10px;min-height:50px">{{description}}</view>
+    </view>
+  </view>
+  
+  <view class="text"><span class="dot">*</span>服务方式: <view class="inputView"> <input
+        class="input {{canChange?'':'bgcInput'}}" value='{{info.wayId}}' disabled="true" />
+    </view>
+  </view>
+
+  <view class="isAdmin" hidden="{{ telHelp }}">
+    <view class="text"><span class="dot">*</span>姓名: <view class="inputView"> <input
+          class="input {{canChange?'':'bgcInput'}}" data-name='info.applyName' value='{{info.applyName}}'
+          disabled="true" /></view>
+    </view>
+    <view class="text"><span class="dot">*</span>部门: <view class="inputView"> <input
+          class="input {{canChange?'':'bgcInput'}}" data-name='info.deptName' value='{{info.deptName}}'
+          disabled="true" /></view>
+    </view>
+    <view class="text"><span class="dot">*</span>电话: <view class="inputView"> <input
+          class="input {{canChange?'':'bgcInput'}}" data-name='info.phone' value='{{info.phone}}' disabled="true" />
+      </view>
+    </view>
+  </view>
+  <view class="isAdmin" hidden="{{ show }}">
+    <view class="text"><span class="dot">*</span>故障原因: <view class="inputView"> <input
+          class="input {{canChange?'':'bgcInput'}}" data-name='resData.reason' disabled="true"
+          value='{{resData.reason}}' /></view>
+    </view>
+    <view class="text"><span class="dot">*</span>故障解决方案: <view class="inputView"> <input
+          class="input {{canChange?'':'bgcInput'}}" data-name='resData.solution' disabled="true"
+          value='{{resData.solution}}' /></view>
+    </view>
+    <view class="text" style="display:{{resData.assist === '' ? 'none' : 'block'}}">
+      <view style="margin-left: 36rpx;">协办人:</view>
+      <view class="inputView"> <input class="input {{canChange?'':'bgcInput'}}" data-name='resData.assist'
+          disabled="true" value='{{resData.assist}}' /></view>
+    </view>
+  </view>
+  <view class="doneStore" hidden="{{ doneStore }}">
+    <view class="text" style="margin-top: 10rpx"><span class="dot">*</span>服务评分:
+      <view class="store">
+        <block wx:for="{{5 - 0}}" wx:key="index">
+          <image class="imgItem" style="left: {{item*100}}rpx" src="{{store > item ?selectedSrc : normalSrc}}">
+            <view class="" data-key="{{item+1}}"></view>
+          </image>
+        </block>
+      </view>
+    </view>
+    <view class="text"><span style="margin-left:26rpx">评价: </span>
+      <view class="inputView"> <textarea class="input {{canChange?'':'bgcInput'}}" data-name='comment'
+          value='{{comment}}' disabled="true" /></view>
+    </view>
+  </view>
+
+</view>
+<view wx:else>
+  <view class="text" style="margin-top: 10rpx"><span class="dot">*</span>紧急度:
+    <view class="urgent">
+      <block wx:for="{{key - 0}}" wx:key="index">
+        <image class="star-image" style="left: {{item*100}}rpx" src="{{key > item ?selectedSrc : normalSrc}}">
+          <!-- <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view> -->
+          <view class="item" data-key="{{item+1}}"></view>
+        </image>
+      </block>
+    </view>
+  </view>
+  <view class="text" hidden="{{ showStatus }}"><span class="dot">*</span>故障类型: <view class="inputView" > <input
+        class="input {{canChange?'':'bgcInput'}}" data-name='info.problemType' value='{{info.problemType}}' disabled="true" /></view>
+  </view>
+  <view class="text" hidden="{{ show }}">
+    <span class="dot">*</span>
+    故障类型:
+    <view class='input inputView'>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange"
+        value="{{multiIndex}}" range="{{multiArray}}" range-key="typeName">
+        <view class="picker">          
+          {{showType ? multiArray[0][multiIndex[0]].typeName : problemType }}{{showType ? '/'+ multiArray[1][multiIndex[1]].typeName : ''}}
+        </view>
+        <!-- {{multiArray[0][multiIndex[0]].typeName}} -->
+      </picker>
+    </view>
+  </view>
+
+  <view class="text" ><span class="dot">*</span>预约时间: 
+    <view class="input inputView"> 
+    <!-- <input
+        class="input {{canChange?'':'bgcInput'}}"  value='{{resData.appointmentCreate}}--{{resData.appointmentEnd}}'
+        disabled="true" /> -->
+        <view style="display:flex;     padding-top: 5px;" >
+           <picker mode="time" value="{{time}}" start="08:00" end="19:59" bindchange="bindTimeChange"
+          >
+          <view class="picker weui-input">
+            {{time}}--
+            <!-- <view style="margin-left:30rpx">--</view>  -->
+          </view>
+        </picker>        
+        <picker mode="time" value="{{timeEnd}}" start="{{time}}" end="20:30" bindchange="bindTimeChange1">
+          <view class="weui-input pickerEnd">
+            {{timeEnd}}
+          </view>
+        </picker>
+        </view>
+       
+      </view>
+  </view>
+  <view class="text" hidden="{{ show }}">
+    <span class="dot">*</span>
+    服务方式:
+    <radio-group bindchange="radioChange"  style="display:flex;margin-left: 15px;margin-top: 10px;">
+        <label class="" wx:for="{{items}}" wx:key="{{item.value}}" style="margin-right: 10px;">     
+          <view style="display:flex"><radio value="{{item.value}}" checked="true"/>
+            <view class="">{{item.name}}</view>       </view>                            
+        </label>
+      </radio-group>
+  </view>
+  <view class="isAdmin" hidden="{{ telHelp }}">
+    <view class="text"><span class="dot">*</span>姓名: <view class="inputView"><input class="input {{canChange?'':'bgcInput'}}"
+          data-name='info.applyName' disabled="disabled" value='{{info.applyName}}' style="background-color: gray" /></view>
+    </view>
+    <view class="text"><span class="dot">*</span>部门: <view class="inputView"> <input class="input {{canChange?'':'bgcInput'}}"
+          data-name='info.deptName' disabled="disabled" value='{{info.deptName}}' /></view>
+    </view>
+    <view class="text"><span class="dot">*</span>电话: <view class="inputView"> <input class="input {{canChange?'':'bgcInput'}}"
+          data-name='info.phone' disabled="disabled" value='{{info.phone}}' /></view>
+    </view>
+  </view>
+  <!-- 工程师界面 -->
+  <view class="isAdmin" hidden="{{ show }}">
+    <view class="text"><span class="dot">*</span>故障原因: <view class="inputView"> <input class="input"
+          data-name='resData.reason' bindinput="handleInput" value='{{resData.reason}}' /></view>
+    </view>
+    <view class="text"><span class="dot">*</span>故障解决方案: <view class="inputView"> <input class="input"
+          data-name='resData.solution' bindinput="handleInput" value='{{resData.solution}}' /></view>
+    </view>   
+    <view class="text">
+      <view style="margin-left: 36rpx;">协办人:</view>
+      <view class='input inputView'>
+        <picker mode="selector" bindchange="bindNameChange" value="{{nameList[nameIndex].userName}}"
+          range="{{nameList}}" range-key='userName'>
+          <view class='picker'><input disabled="disabled" value='{{name}}' /></view>
+        </picker>
+      </view>
+    </view>
+    <view class="text">
+      <span class="dot"></span>
+    故障描述: 
+      <view class="inputView"> 
+        <view 
+        class="{{canChange?'':'bgcInput'}}" data-name='description' 
+        disabled="true" style="box-sizing: border-box;padding: 10px;min-height:50px">{{description}}</view>
+      </view>
+    </view>
+    <view class="text"><span class="dot"></span>部门: <view class="inputView"> <input class="input bgcInput"
+          disabled="true" value='{{deptName}}' /></view>
+    </view>
+    <view class="text"><span class="dot"></span>手机号: <view class="inputView">
+        <view class="phoneblock">
+          <input class="input bgcInput phoneinput" disabled="true" value='{{mobilPhone}}' />
+          <image src="../../assets/icon/phone.png" class="phone" bindtap="dial"></image>
+        </view>
+        <!-- <mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+        <view>拨打{{mobilPhone}}？</view>
+    </mp-dialog> -->
+
+      </view>
+    </view>
+    <view class="text">
+      <span class="dot">*</span>状态:
+      <view class="inputView">
+        <input class="input {{canChange?'':'bgcInput'}}" data-name='status' value='{{status}}' disabled="true" />
+      </view>
+    </view>
+
+    <view class="btn">
+      <button type="default" bindtap="deal" style="color:#199ED8; margin-right: 4rpx; width:45% "
+        hidden="{{ dealHidden }}">接单</button>
+      <button type="default" bindtap="deal" style="color:#199ED8; margin-right: 4rpx; width:45%  "
+        hidden="{{ dealBtn }}">协办</button>
+      <button type="primary" bindtap="submit" style="background-color:#199ED8;width:45% ">完成</button>
+    </view>
+
+  </view>
+  <view class="text" hidden="{{ showStore }}" style="margin-top: 10rpx">
+    <span class="dot">*</span>服务评分:
+    <view class="store">
+      <block wx:for="{{5 - 0}}" wx:key="index">
+        <image class="imgItem" style="left: {{item*100}}rpx" src="{{store > item ?selectedSrc : normalSrc}}">
+          <view class="" data-key="{{item+1}}"></view>
+        </image>
+      </block>
+    </view>
+    <view class="text">
+      <span class="dot">*</span>评论内容:
+    </view>
+  </view>
+</view>

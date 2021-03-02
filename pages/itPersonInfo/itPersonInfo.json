@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mp-icon": "../miniprogram_npm/weui-miniprogram/icon/icon"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#199ED8",
+  "navigationBarTitleText": "IT服务中心",
+  "navigationBarTextStyle": "white"
+}

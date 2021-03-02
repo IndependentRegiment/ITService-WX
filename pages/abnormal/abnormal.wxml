@@ -1,0 +1,31 @@
+<!--pages/abnormal/abnormal.wxml-->
+<view class="title">
+  <h1 class="htitle">体温异常报告</h1>
+</view>
+<view class="content">
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" tuData="{{content}}" ec="{{ ec }}" ></ec-canvas>
+</view>
+<view class="body">
+  <view style='margin-top:6%'>
+    <view class='input input1'>
+      员工体温
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">姓名</view>
+          <view class="th">上午体温</view>
+          <view class="th">下午体温</view>
+        </view>
+        <block wx:for="{{listData}}" wx:key="{{code}}">
+          <view class="tr bg-g">
+            <view class="td">{{item.code}}</view>
+            <view class="td">{{item.noon}}</view>
+            <view class="td">{{item.after}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+

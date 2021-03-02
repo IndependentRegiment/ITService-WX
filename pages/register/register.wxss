@@ -1,0 +1,171 @@
+/* pages/register/register.wxss */
+.body {
+  box-sizing: border-box;
+  word-break: break-word;
+}
+
+.title {
+  border-bottom: 1px dashed #ccc;
+  margin-bottom: 5px;
+}
+
+.htitle {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  line-height: 32px;
+  font-weight: bold;
+  margin: 5px 0;
+  padding: 0;
+  text-align: center;
+  color: #1ea0fa;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 80%;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 14px;
+  display: inline-block;
+  -webkit-appearance: none;
+  outline: none;
+  margin: 0 0.5em;
+}
+
+.input {
+  width: 90%;
+  background-color: #fff;
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 14px;
+  display: inline-block;
+  -webkit-appearance: none;
+  outline: none;
+  margin: 0 0.5em;
+}
+
+.input1 {
+  border: 0px;
+}
+
+.input2 {
+  border: 1px solid #e5e5e5;
+}
+
+.spanColor {
+  color: red;
+}
+
+.content{
+  margin-bottom:80px;
+}
+
+.blue {
+  width: 100% !important;
+  color: #F7F7F7;
+  position: fixed;
+  height: 60px;
+  line-height: 40px;
+  bottom: 0;
+  left: 0;
+  background: #1ea0fa;
+}
+
+.list-msg {
+  padding: 0 20rpx;
+  background-color: #fff;
+  position: relative;
+}
+
+.list-msg1 {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-msg2 {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10rpx;
+}
+
+.select_box {
+  background-color: #fff;
+  padding: 0 10rpx;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+  overflow: scroll;
+  height: 200px;
+  animation: myfirst 0.5s;
+}
+
+.select_box1 {
+  background-color: #fff;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+  overflow: scroll;
+  height: 200px;
+  animation: myfirst 0.5s;
+}
+
+.select_box2 {
+  background-color: #fff;
+  padding: 0 10rpx;
+  width: 100%;
+  position: absolute;
+  top: 67em;
+  z-index: 1;
+  overflow: hidden;
+  animation: myfirst 0.5s;
+  margin-left: -12px;
+}
+
+@keyframes myfirst {
+  from {
+    height: 0rpx;
+  }
+
+  to {
+    height: 210rpx;
+  }
+}
+
+.select_one {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #ccc;
+  padding-left: 10px;
+}
+
+.icon {
+  color: red;
+  padding-bottom: 5px;
+}
+
+.sub {
+  margin-top: 3em;
+}
+
+.picker {
+  padding: 13px;
+  background-color: #FFFFFF;
+}

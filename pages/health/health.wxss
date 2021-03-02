@@ -1,0 +1,107 @@
+page{
+  background-color: rgba(244, 244, 244, 100);
+}
+.main-wrap{
+  padding:10px;
+}
+.info-wrap{
+  background-color:white;
+  padding:5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.info-item{
+  display: flex;
+  font-size: 16px;
+  color: rgb(13, 39, 56);
+  line-height: 36px;
+  margin-top:10px;
+}
+.input-wrap{
+   flex:1;
+   border-bottom:1px solid #f1f1f1;
+   border-radius: 5px;
+   padding:0 10px;
+   box-sizing: border-box;
+}
+
+.input-wrap input{
+  height: 36px;
+  line-height: 36px;
+}
+/* 第二部分 */
+/* 单选框样式 */
+radio ,checkbox{
+  transform:scale(0.7);
+}
+.radio-left{
+  padding-left: 20px;
+}
+.group text{
+  margin-left: -5px;
+}
+.noflex{
+  display: block;
+}
+/* .input-wrap label text{
+  white-space: nowrap;
+} */
+/* 上传图片部分 */
+.img-wrap{
+  padding-bottom: 10px;
+}
+.addImg-btn{
+  width: 100px;
+  height: 100px;
+  border:2px dotted #ccc;
+  line-height: 100px;
+  color: #999;
+  text-align: center;
+  overflow: hidden;
+}
+.addImg-btn image{
+  max-width: 100%;
+  max-height: 100%;
+}
+.need-check{
+  padding-top: 20px;
+}
+.hint-text{
+  font-size: 16px;
+    color: #074d84;
+    margin-bottom: -10px;
+    padding-top: 5px;
+    padding-left: 10px;
+    position: relative;
+}
+.hint-text span{
+  font-size: 12px;
+  color: #b50707;
+}
+.hint-text::after{
+  content:"";
+  width:5px;
+  height:20px;
+  position:absolute;
+  top:8px;
+  left:0;
+  background:#2196f3;
+}
+.tips{
+  color: #a6b1b9;
+  font-size: 12px;
+  padding-left: 80px
+}
+
+
+/* 提交按钮 */
+.blue {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  color: #F7F7F7;
+  background: #1ea0fa;
+  line-height: 60px;
+  border-radius: 6px;
+}
+

@@ -1,0 +1,30 @@
+<!--pages/normal/normal.wxml-->
+<view class="title">
+  <h1 class="htitle">{{title}}</h1>
+</view>
+<view class="content">
+  <ec-canvas id="mychartbar" canvas-id="mychart-bar" tuData="{{content}}" ec="{{ ec }}" ></ec-canvas>
+</view>
+<view class="body">
+  <view style='margin-top:6%'>
+    <view class='input input1'>
+      员工体温
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">姓名</view>
+          <view class="th">上午体温</view>
+          <view class="th">下午体温</view>
+        </view>
+        <block wx:for="{{listData}}">
+          <view class="tr bg-g">
+            <view class="td">{{item.Name}}</view>
+            <view class="td">{{item.Morning}}</view>
+            <view class="td">{{item.Afternoon}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

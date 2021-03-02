@@ -1,0 +1,38 @@
+<!--pages/personInfo/personInfo.wxml-->
+<view class="perdonInfo-wrap">
+  <!-- 头部样式 -->
+  <view class="header-common">
+    <view class="header-main">
+      <open-data type="userAvatarUrl" class="header-img"></open-data>
+      <view class="header-info">
+        <view class="select-wrap">
+          <!-- 在线离线 -->
+          <picker class="select-opt" style="color:{{index ==1 ?'#0560a0':'#8b99ad'}};display:{{roleName === '工程师'?'block':'none'}}" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">
+              {{array[index]}}<mp-icon icon="{{index ==1 ?'done':'close'}}" color="{{index ==1 ?'#0560a0':'#8b99ad'}}" size="{{16}}"></mp-icon>
+            </view>
+          </picker>
+          <!-- 昵称 -->
+          <open-data class="info-title" type="userNickName" lang="zh_CN"></open-data>
+        </view>
+        <p class="info-tel">{{roleName}}</p>
+      </view>
+    </view>
+  </view>
+  <!-- 列表部分 -->
+  <view class="perdonInfo-list">
+    <view class="list-info" bindtap='getCurrentIndex'>
+      <view class="list-info-img">
+        <image src="/assets/icon/tiwen.png" />
+      </view>
+      <view class="list-info-title">体温查看</view>
+      <!-- <view class="list-info-count">12</view>  -->
+    </view>
+    <view class="list-info" bindtap='lookDan' style="display:{{roleName === '工程师'?'flex':'none'}}">
+      <view class="list-info-img">
+        <image src="/assets/icon/look.png" />
+      </view>
+      <view class="list-info-title">查看手工单</view>
+    </view>
+  </view>
+</view>

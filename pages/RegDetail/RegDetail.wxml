@@ -1,0 +1,13 @@
+<!--pages/RegDetail/RegDetail.wxml-->
+<view class="kind-list__item-bd_show}}">
+    <view class="weui-cells weui-cells_show}}">
+        <block wx:for="{{list}}" wx:key="*this">
+            <view class="weui-cell weui-cell_access weui-float">
+                <view class="weui-cell__bd">{{item.name}}</view>
+                <view class="weui-cell__ft">{{item.content}}</view>
+            </view>
+        </block>
+    </view>
+</view>
+
+  

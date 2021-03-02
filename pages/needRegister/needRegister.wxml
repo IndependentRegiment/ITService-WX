@@ -1,0 +1,82 @@
+<!--pages/needRegister/needRegister.wxml-->
+<view class="body" wx:if="{{bodyHidden}}">
+  <!-- 内容 -->
+  <view class="content">
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>1.姓名</view>
+        <view class='input input2'><input  type='text' bindinput='getUserName'  value='{{resData.Visitor}}'> </input></view>
+      </view>
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>2.访客身份证号码</view>
+        <view class='input input2'><input  type='text' bindinput='getUserCard' value='{{resData.IDCard}}' maxlength="18"></input></view>
+      </view>
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>3.手机号</view>
+        <view class='input input2'><input  type='number' bindinput='getPhone' value='{{resData.Tel}}'  maxlength="11"></input></view>
+      </view>
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>4.您所在公司类型</view>
+        <view class='input inputHidden'>
+          <radio-group bindchange="getCheckCompanyType">
+            <label class="checkbox" wx:for-items="{{checkCompanyType}}">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>5.您所在公司名称</view>
+        <view class='input input2'>
+        <input  type='text' bindinput='getCompany' value='{{resData.Company}}'>> </input>
+        </view>
+      </view>
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>6.您所在公司部门</view>
+        <view class='input input2'>
+        <input  type='text' bindinput='getDepartment' value='{{resData.DepartMent}}'>> </input>
+      </view>
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>7.受访人姓名</view>
+        <view class='input input2'><input  type='text' bindinput='getProUserName'  value='{{resData.Employee}}'> </input></view>
+      </view>
+      <view style='margin-top:2%'>
+        <view class='input input1'><span class="spanColor">*</span>8.拜访事由</view>
+        <view class='input input2'><textarea bindinput="getCause" auto-height  value='{{resData.Remark}}'/></view>
+      </view>
+    </view>
+    <!-- 提交 -->
+    <view class='sub'>
+      <button class='blue' bindtap="submit" disabled="{{disable}}">提交</button>
+    </view>
+  </view>
+</view>
+
+
+<modal title='注意事项' bindconfirm='yes' bindcancel='no' hidden='{{hidden}}'>
+  <view class="body">
+    <!-- 标题 -->
+    <view class="bodyTitle">
+      <view class="title">
+        <view class="description" wx:for="{{description}}" wx:key="">
+          <view>
+            {{item}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="checkBody">
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox" wx:for-items="{{items}}">
+            <checkbox value="{{item.name}}" checked="{{item.checked}}" disabled="{{disabled}}"/>{{item.value}}<label hidden="{{showSec}}">({{second}}S)</label>
+        </label>
+      </checkbox-group>
+    </view>
+    
+    <!-- 提交 -->
+    <!-- <view class='sub'>
+      <button class='blue' bindtap="submit" disabled="{{disable}}">点击进入登记页面</button>
+    </view> -->
+  </view>
+</modal>
+
+

@@ -1,0 +1,53 @@
+<!--pages/work/work.wxml-->
+<view class="title">
+  <h1 class="htitle">办公情况报告</h1>
+</view>
+<view class="content">
+  <view class="contentTop">
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" tuData="{{workList}}" ec="{{ ec }}"></ec-canvas>
+  </view>
+</view>
+
+<view class="body">
+  <view style='margin-top:6%'>
+    <view class='input input1'>
+      员工办公情况（居家办公人数）
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">办公地址</view>
+          <view class="th">人数</view>
+        </view>
+        <block wx:for="{{listData}}" wx:key="{{code}}">
+          <view class="tr bg-g">
+            <view class="td">{{item.province}}</view>
+            <view class="td">{{item.count}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="body1">
+  <view style='margin-top:6%'>
+    <view class='input input1'>
+      员工办公情况（在岗办公人数）
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">办公地址</view>
+          <view class="th">人数</view>
+        </view>
+        <block wx:for="{{listData}}" wx:key="{{code}}">
+          <view class="tr bg-g">
+            <view class="td">{{item.province}}</view>
+            <view class="td">{{item.count}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<!--pages/result/result.wxml-->
+<view class='body'>
+  <block wx:if='{{boolean==1}}'>
+    <view class='block'>
+      <icon class='red ./iconfont/icon-frown:before'></icon>
+      <!-- <view class='red'>建议就医</view> -->
+    </view>
+  </block>
+  <block wx:elif='{{boolean==2}}'>
+    <view class='block'>
+      <icon class='yellow ./iconfont/icon-meh:before'></icon>
+      <!-- <view class='yellow'>建议观察</view> -->
+    </view>
+  </block>
+  <block wx:else>
+    <view class='block'>
+      <icon class='green ./iconfont/icon-smile:before'></icon>
+      <!-- <view class='green'>身体健康</view> -->
+    </view>
+  </block>
+</view>
+<!-- <view class='footer'>
+  <button bindtap='returnIndex'>确定</button>
+</view> -->

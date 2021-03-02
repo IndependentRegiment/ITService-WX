@@ -1,0 +1,246 @@
+<wxs src="../../utils/tool.wxs" module="tools"></wxs>
+
+<view class="main-wrap" wx:if="{{isHidden}}">
+  <!-- 第一部分--个人信息部分 -->
+  <view class="info-wrap">
+    <view class="hint-text">第一部分<span>（2月5号前填写，2月5号后不可修改）</span></view>
+    <div class="info-item">
+      <view>姓名：</view>
+      <view class="input-wrap">
+        <input value="{{commitData.Name}}" disabled="{{isEdit}}" bindinput="bindReplaceInput" data-name="Name" />
+      </view>
+    </div>
+    <div class="info-item">
+      <view>工号：</view>
+      <view class="input-wrap">
+        <input value="{{commitData.EmpNum}}" disabled="{{isEdit}}" bindinput="bindReplaceInput" data-name="EmpNum" />
+      </view>
+    </div>
+    <div class="info-item">
+      <view>部门：</view>
+      <view class="input-wrap">
+        <picker mode="multiSelector" disabled="{{isEdit}}" bindchange="bindMultiPickerChange"
+          bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}"
+          range-key="DeptName">
+          <view class="picker">
+            {{multiArray[0][multiIndex[0]].DeptName}}，{{multiArray[1][multiIndex[1]].DeptName}}
+          </view>
+        </picker>
+      </view>
+    </div>
+    <div class="info-item">
+      <view>电话：</view>
+      <view class="input-wrap">
+        <input type="number" value="{{commitData.Tel}}" disabled="{{isEdit}}" bindinput="bindReplaceInput"
+          data-name="Tel" />
+      </view>
+    </div>
+  </view>
+  <!-- 第二部分信息--是否出沪 -->
+  <view class="info-wrap">
+    <view class="hint-text">第二部分<span>（如需变更行程信息，请及时修改）</span></view>
+    <div class="info-item">
+      <view>是否出沪：</view>
+      <view class="input-wrap">
+        <radio-group class="group" bindchange="radioChange" data-name="IsLeave">
+          <view>
+            <radio value="true" checked="{{commitData.IsLeave}}"></radio>是
+            <radio class="radio-left" value="false" checked="{{!commitData.IsLeave}}"></radio>否
+          </view>
+        </radio-group>
+      </view>
+    </div>
+    <view class="tips">选择“是”，节后需上传行程码与核酸检测报告；选择“否”，节后仅需上传行程码；</view>
+    <!-- 出沪字段 -->
+    <view class="exit-wrap" wx:if="{{commitData.IsLeave}}">
+      <div class="info-item">
+        <view>出沪日期：</view>
+        <view class="input-wrap">
+          <picker mode="date" value="{{commitData.LeaveDate}}" bindchange="bindDateChange" data-name="LeaveDate">
+            <view class="picker"> {{commitData.LeaveDate}}</view>
+          </picker>
+        </view>
+      </div>
+      <div class="info-item">
+        <view>返沪日期：</view>
+        <view class="input-wrap">
+          <picker mode="date" value="{{commitData.ReturnDate}}" bindchange="bindDateChange" data-name="ReturnDate">
+            <view class="picker"> {{commitData.ReturnDate}}</view>
+          </picker>
+        </view>
+      </div>
+      <div class="info-item">
+        <view>前往城市1：</view>
+        <view class="input-wrap">
+          <picker mode="region" bindchange="bindRegionChange" data-name="region1" value="{{region1}}"
+            custom-item="{{customItem}}">
+            <view class="picker">
+              {{region1[0]}}，{{region1[1]}}，{{region1[2]}}
+            </view>
+          </picker>
+          <input value="{{commitData.Address}}" placeholder="具体地址精确至“区或镇”" bindinput="bindReplaceInput"
+            data-name="Address" />
+        </view>
+      </div>
+      <div class="info-item">
+        <view>前往城市2：</view>
+        <view class="input-wrap">
+          <picker mode="region" bindchange="bindRegionChange" data-name="region2" value="{{region2}}"
+            custom-item="{{customItem}}">
+            <view class="picker">
+              {{region2[0]}}，{{region2[1]}}，{{region2[2]}}
+            </view>
+          </picker>
+          <input value="{{commitData.AddressReserved}}" placeholder="具体地址精确至“区或镇”" bindinput="bindReplaceInput"
+            data-name="AddressReserved" />
+        </view>
+      </div>
+      <div class="info-item">
+        <view>前往城市3：</view>
+        <view class="input-wrap">
+          <picker mode="region" bindchange="bindRegionChange" data-name="region3" value="{{region3}}"
+            custom-item="{{customItem}}">
+            <view class="picker">
+              {{region3[0]}}，{{region3[1]}}，{{region3[2]}}
+            </view>
+          </picker>
+          <input value="{{commitData.Section}}" placeholder="具体地址精确至“区或镇”" bindinput="bindReplaceInput"
+            data-name="Section" />
+        </view>
+      </div>
+      <div class="info-item">
+        <view>交通工具：</view>
+        <view class="input-wrap">
+          <checkbox-group class="group" bindchange="changeCheck" data-name="Transportation">
+            <label wx:for="{{trans}}" wx:key="index">
+              <checkbox value="{{item.name}}" checked="{{tools.indexOf(commitData.Transportation, item.value)}}">
+              </checkbox>
+              <text>{{item.value}}</text>
+            </label>
+          </checkbox-group>
+        </view>
+      </div>
+      <div class="info-item">
+        <view>出沪事由：</view>
+        <view class="input-wrap">
+          <checkbox-group class="group" bindchange="changeCheck" data-name="reasonStr">
+            <label wx:for="{{reason}}" wx:key="index">
+              <checkbox value="{{item.name}}" checked="{{tools.indexOf(reasonStr, item.value)}}">
+              </checkbox>
+              <text>{{item.value}}</text>
+            </label>
+          </checkbox-group>
+          <input placeholder="补充说明" value="{{commitData.LeaveReason}}" bindinput="bindReplaceInput"
+            data-name="LeaveReason" />
+        </view>
+      </div>
+    </view>
+    <div class="info-item">
+      <view>部门负责人：</view>
+      <view class="input-wrap">
+        <input value="{{commitData.DeptLeader}}" bindinput="bindReplaceInput" data-name="DeptLeader" />
+      </view>
+    </div>
+  </view>
+  <!-- 第三部分 -->
+  <view class="info-wrap" wx:if="{{isEdit}}">
+    <view class="hint-text">第三部分<span>（入司前一天填写）</span></view>
+    <!-- <div class="info-item">
+      <view>是否需要核酸检测：</view>
+      <view class="input-wrap">
+        <radio-group class="group" bindchange="radioChange" data-name="NeedacidTest">
+          <view>
+            <radio value="true" checked="{{commitData.NeedacidTest}}"></radio>是
+            <radio class="radio-left" value="false" checked="{{!commitData.NeedacidTest}}"></radio>否
+          </view>
+        </radio-group>
+      </view>
+    </div> -->
+    <!-- 需要核酸检测字段 -->
+    <view class="need-check">
+      <div class="info-item">
+        <view>核算检测日期：</view>
+        <view class="input-wrap">
+          <picker mode="date" value="{{commitData.AcidTestDate}}" bindchange="bindDateChange" data-name="AcidTestDate">
+            <view class="picker"> {{commitData.AcidTestDate}}</view>
+          </picker>
+        </view>
+      </div>
+      <div class="info-item" wx:if="{{commitData.IsLeave}}">
+        <view>核酸检测报告：</view>
+        <view class="input-wrap">
+          <view class="img-wrap">
+            <view class="addImg-btn" bindtap="uploadImg" data-tag="0">
+              <text wx:if="{{jcbgUrl.length===0}}">上传图片</text>
+              <image src="{{jcbgUrl[0]}}" />
+            </view>
+          </view>
+        </view>
+      </div>
+    </view>
+    <div class="info-item">
+      <view>行程码：</view>
+      <view class="input-wrap">
+        <view class="img-wrap">
+          <view class="addImg-btn" bindtap="uploadImg" data-tag="1">
+            <text wx:if="{{xcmUrl.length===0}}">上传图片</text>
+            <image src="{{xcmUrl[0]}}" />
+          </view>
+        </view>
+      </view>
+    </div>
+  </view>
+  <!-- 第四部分-非上海人员填写--2月5号以后填写 -->
+  <view class="info-wrap" wx:if="{{isEdit}}">
+    <view class="hint-text">第四部分<span>（仅不在上海人员填写，每天需填写一次）</span></view>
+    <div class="info-item">
+      <view>目前所在地：</view>
+      <view class="input-wrap">
+        <input value="{{dayList.Address}}" bindinput="dayInput" data-name="Address" />
+      </view>
+    </div>
+    <div class="info-item">
+      <view>健康状况：</view>
+      <view class="input-wrap">
+        <checkbox-group class="group" bindchange="dayCheck" data-name="HealthCondition">
+          <label wx:for="{{health}}" wx:key="index">
+            <checkbox value="{{item.name}}" checked="{{tools.indexOf(dayList.HealthCondition, item.name)}}"></checkbox>
+            <text>{{item.value}}</text>
+          </label>
+        </checkbox-group>
+      </view>
+    </div>
+    <div class="info-item">
+      <view>预计返沪日期：</view>
+      <view class="input-wrap">
+        <picker mode="date" value="{{dayList.PlanComeBack}}" data-name="PlanComeBack" bindchange="dayDateChange">
+          <view class="picker">{{dayList.PlanComeBack}}</view>
+        </picker>
+      </view>
+    </div>
+    <div class="info-item noflex">
+      <view>是否接触过来自中高风险地区人员：</view>
+      <view class="input-wrap">
+        <radio-group class="group" bindchange="dayRadio" data-name="TouchHighRisk">
+          <view>
+            <radio value="true" checked="{{dayList.TouchHighRisk}}"></radio>是
+            <radio class="radio-left" value="false" checked="{{!dayList.TouchHighRisk}}"></radio>否
+          </view>
+        </radio-group>
+      </view>
+    </div>
+    <div class="info-item noflex">
+      <view>是否接触过新冠肺炎疑似/确诊患者：</view>
+      <view class="input-wrap">
+        <radio-group class="group" bindchange="dayRadio" data-name="TouchAcid">
+          <view>
+            <radio value="true" checked="{{dayList.TouchAcid}}"></radio>是
+            <radio class="radio-left" value="false" checked="{{!dayList.TouchAcid}}"></radio>否
+          </view>
+        </radio-group>
+      </view>
+    </div>
+  </view>
+  <!-- 提交 -->
+  <view class='blue' bindtap="submitAll">提交</view>
+</view>

@@ -1,0 +1,95 @@
+<!--pages/view/view.wxml-->
+<view class="title">
+  <h1 class="htitle">员工健康报告</h1>
+</view>
+<view class="content">
+  <view class="contentTop" wx:for="{{contentList}}">
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" tuData="{{item.content}}" ec="{{ ec }}" data-z="{{item.index}}" bindtap='getCurrentIndex' ></ec-canvas>
+  </view>
+</view>
+
+<view class="body">
+  <!-- <view style='margin-top:6%'>
+    <view class='input input1'>
+      办公情况
+      <view class="Right" bindtap="workTypeClick">更多<icon class='icon ./iconfont/icon-xiangyou:before'></icon> </view>
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">办公方式</view>
+          <view class="th">人数</view>
+        </view>
+        <block wx:for="{{workTypeData}}" wx:key="{{code}}">
+          <view class="tr bg-g">
+            <view class="td">{{item.code}}</view>
+            <view class="td">{{item.count}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view> -->
+  <view style='margin-top:6%'>
+    <view class='input input1'>
+      体温区间
+      <!-- <view class="Right" bindtap="normalClick">更多<icon class='icon ./iconfont/icon-xiangyou:before'></icon> </view> -->
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">温度段</view>
+          <view class="th">人数</view>
+        </view>
+        <block wx:for="{{listData}}">
+          <view class="tr bg-g">
+            <view class="td">{{item.code}}</view>
+            <view class="td">{{item.count}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view style='margin-top:6%'>
+    <view class='input input1'>
+      体温异常
+      <view class="Right" bindtap="abnormalClick">更多<icon class='icon ./iconfont/icon-xiangyou:before'></icon> </view>
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">温度段</view>
+          <view class="th">人数</view>
+        </view>
+        <block wx:for="{{aListData}}">
+          <view class="tr bg-g">
+            <view class="td">{{item.code}}</view>
+            <view class="td">{{item.count}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view> -->
+
+  <view style='margin-top:6%' wx:for="{{companyListData}}">
+    <view class='input input1'>
+      {{item.company}}
+       <view class="Right" data-z="{{item.company}}" bindtap="normalClick">更多<icon class='icon ./iconfont/icon-xiangyou:before'></icon> </view>
+    </view>
+    <view class="contentBody">
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">部门</view>
+          <view class="th">人数</view>
+        </view>
+        <block wx:for="{{item.content}}" wx:for-item="itemName">
+          <view class="tr bg-g">
+            <view class="td">{{itemName.depart}}</view>
+            <view class="td">{{itemName.count}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+

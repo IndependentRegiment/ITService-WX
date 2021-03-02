@@ -1,0 +1,182 @@
+<!--pages/agentConstruct/agentConstruct.wxml-->
+<view class="list-container">
+  <!-- 评分 -->
+  <view class="store-wrap" style="display:{{isVison?'block':'none'}};z-index:999">
+    <view class="store">
+      <view class="close-btn" bindtap="colsePj">X</view>
+      <text class="pj-title">请评价</text>
+
+      <view class="bg-white padding margin-top-xs">
+        <view class="cu-steps">
+          <view bindtap="numSteps" data-id="{{index}}"
+            class="cu-item {{index>basics?'':basics===0?'text-red':basics===1?'text-yellow':basics===2?'text-orange':'text-olive'}}"
+            wx:for="{{basicsList}}" wx:key="index">
+            <text class="cuIcon-{{index>basics?'title':item.icon}}"></text> {{item.name}}
+          </view>
+        </view>
+      </view>
+
+      <!-- <block class="pj-wrap" wx:for="{{stars}}" wx:key="index">
+        <image class="star-image" data-key="{{item}}" bindtap="selectRight" style="left: {{item*100}}rpx"
+          src="{{key >= item ?selectedSrc : normalSrc}}">
+        </image>
+      </block> -->
+      <!-- <view class="body-view" style="padding:15px 0;">
+        <slider bindchange="sliderchange" min="20" max="100" show-value />
+      </view> -->
+      <textarea bindinput='getComment' class="dhtext" placeholder="请评论内容" value="{{comment}}"></textarea>
+      <div class="submit-btn" bindtap="submitPj">提交</div>
+    </view>
+  </view>
+
+  <view class="page" style="position:relative;">
+    <!-- 话务员 -->
+    <view style="display:{{userRole === '话务员'?'block':'none'}}" class="weui-cells list-items-wrap" bindtap="detail"
+      data-id="{{item.cardId}}" wx:for="{{dataList}}" wx:key="index">
+      <mp-slideview bindbuttontap="slideButtonTap">
+        <view class="item-text"
+          style="font-size:15px;color:#222;line-height:30px; padding-left:20rpx; padding-top:20rpx;">工单号:{{item.cardId}}
+        </view>
+        <view class="list-items-item">
+          <view class="item-text">申请人:{{item.applyName}}</view>
+          <view class="item-text">工程师:{{item.deal}}</view>
+        </view>
+        <view class="list-items-item">
+          <view class="item-text">协办人:{{item.assistName ==null?'无':item.assistName}}</view>
+          <view class="item-text" style="display:{{(status === '已完成' ||status === '已评价' )?'none':'block'}}">
+            等待人数:<span style="color:red">{{item.waitCount}}</span></view>
+        </view>
+        <view class="list-time-wrap">
+          <!-- <view class="list-time" style="display:{{(status === '已完成' ||status === '已评价' )?'none':'block'}}">
+            等待人数:<span style="color:red">{{item.waitCount}}</span></view> -->
+          <view class="list-time">故障类型:{{item.problemType}}</view>
+          <view class="list-time">创建时间:{{item.createTime}}</view>
+          <view style="display:{{(status === '已完成'||status === '已评价')?'block':'none'}}" class="list-time">
+            完成时间:{{item.endTime}}</view>
+        </view>
+      </mp-slideview>
+    </view>
+
+    <!-- 普通用户 -->
+    <view style="display:{{userRole === '普通用户'?'block':'none'}};" class="weui-cells list-items-wrap" bindtap="detail"
+      data-id="{{item.cardId}}" wx:for="{{dataList}}" wx:key="index">
+      <mp-slideview bindbuttontap="slideButtonTap">
+        <view style="display:{{status === '已创建'?'block':'none'}};">
+          <view class="list-items-item">
+            <view class="item-text" style="width:70%">工单号:{{item.cardId}}</view>
+            <view class="item-text" style="width:30%">
+              <text style="float:left;">紧急度:</text>
+              <view style="display:inline-block;float:left" wx:key="index"
+                wx:for="{{item.priority===1?[1]:item.priority===2?[1,2]:[1,2,3]}}">
+                <image style="width:15px;height:15px;display:inline-block" src="../../assets/icon/star2.png" />
+              </view>
+            </view>
+          </view>
+          <view class="list-items-item">
+            <view class="item-text" style="width:70%">工程师:{{item.deal}}</view>
+            <view class="item-text" style="width:30%">协办人:{{item.assistName ==null?'无':item.assistName}}</view>
+          </view>
+          <view class="list-time-wrap">
+            <view class="list-time">等待人数:<span style="color:red">{{item.waitCount}}</span></view>
+            <view class="list-time">故障类型:{{item.problemType}}</view>
+          </view>
+        </view>
+
+        <view style="display:{{status === '已处理'?'block':'none'}}">
+          <view class="item-text"
+            style="font-size:15px;color:#222;line-height:30px; padding-left:20rpx; padding-top:20rpx;">
+            工单号:{{item.cardId}}
+          </view>
+          <view class="list-items-item">
+            <view class="item-text" style="width:70%">工程师:{{item.deal}}</view>
+            <view class="item-text" style="width:30%">协办人:{{item.assistName ==null?'无':item.assistName}}</view>
+          </view>
+          <view class="list-time-wrap">
+            <!-- <view class="list-time">工程师:{{item.deal}}</view> -->
+            <view class="list-time">故障类型:{{item.problemType}}</view>
+            <view class="list-time">创建时间:{{item.createTime}}</view>
+          </view>
+        </view>
+
+        <view style="display:{{status === '已评价'?'block':'none'}}">
+          <view class="item-text"
+            style="font-size:15px;color:#222;line-height:30px; padding-left:20rpx; padding-top:20rpx;">
+            工单号:{{item.cardId}}
+          </view>
+          <view class="list-items-item">
+            <view class="item-text" style="width:60%">工程师:{{item.deal}}</view>
+            <view class="item-text" style="width:40%"><text style="float:left">满意度:</text>
+              <view style="display:inline-block;;float:left" wx:key="index"
+                wx:for="{{item.satisfaction==1?[1]:item.satisfaction==2?[1,2]:item.satisfaction==3?[1,2,3]:item.satisfaction==4?[1,2,3,4]:[1,2,3,4,5]}}">
+                <image style="width:15px;height:15px;display:inline-block" src="../../assets/icon/star2.png" />
+              </view>
+            </view>
+          </view>
+          <view class="list-time-wrap">
+            <view class="list-time">故障类型:{{item.problemType}}</view>
+            <view class="list-time">创建时间:{{item.createTime}}</view>
+            <view style="display:{{(status === '已完成'||status === '已评价')?'block':'none'}}" class="list-time">
+              完成时间:{{item.endTime}}</view>
+          </view>
+        </view>
+      </mp-slideview>
+    </view>
+
+    <!-- 工程师 -->
+    <view style="display:{{userRole === '工程师'?'block':'none'}}" class="weui-cells list-items-wrap" bindtap="detail"
+      data-id="{{item.cardId}}" wx:for="{{dataList}}" wx:key="index">
+      <mp-slideview bindbuttontap="slideButtonTap">
+        <view style="display:{{(status === '待处理' || status === '处理中' || status === '协办中')?'block':'none'}}">
+          <view class="list-items-item">
+            <view class="item-text" style="width:70%">工单号:{{item.cardId}}</view>
+            <view class="item-text" style="width:30%"><text style="float:left;">紧急度:</text>
+              <view style="display:inline-block;float:left" wx:key="index"
+                wx:for="{{item.priority===1?[1]:item.priority===2?[1,2]:[1,2,3]}}">
+                <image style="width:15px;height:15px;display:inline-block" src="../../assets/icon/star2.png" />
+              </view>
+            </view>
+          </view>
+          <view class="list-items-item">
+            <view class="item-text" style="width:70%">创建时间:{{item.createTime}}</view>
+            <view class="item-text" style="width:30%">申请人:{{item.applyName}}</view>
+          </view>
+          <view class="list-items-item" style="display:{{status === '协办中'?'block':'none'}}">
+            <view class="item-text" style="width:70%">工程师:{{item.deal}}</view>
+            <view class="item-text" style="width:30%">协办人:{{item.assistName ==null?'无':item.assistName}}</view>
+          </view>
+          <view class="list-time-wrap">
+            <view class="list-time">故障类型:{{item.problemType}}</view>
+          </view>
+        </view>
+        <view style="display:{{status === '已评价'?'block':'none'}};padding-bottom:10px;">
+          <view class="item-text"
+            style="font-size:15px;color:#222;line-height:30px; padding-left:20rpx; padding-top:20rpx;">
+            工单号:{{item.cardId}}
+          </view>
+          <view class="list-items-item">
+            <view class="item-text" style="width:60%">申请人:{{item.applyName}}</view>
+            <view class="item-text" style="width:40%"><text style="float:left">满意度:</text>
+              <view style="display:inline-block;float:left" wx:key="index"
+                wx:for="{{item.satisfaction==1?[1]:item.satisfaction==2?[1,2]:item.satisfaction==3?[1,2,3]:item.satisfaction==4?[1,2,3,4]:[1,2,3,4,5]}}">
+                <image style="width:15px;height:15px;display:inline-block" src="../../assets/icon/star2.png" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view style="display:{{status === '已处理'?'block':'none'}}">
+          <view class="item-text"
+            style="font-size:15px;color:#222;line-height:30px; padding-left:20rpx; padding-top:20rpx;">
+            工单号:{{item.cardId}}
+          </view>
+          <view class="list-time-wrap">
+            <view class="list-time">申请人:{{item.applyName}}</view>
+            <view class="list-time">故障类型:{{item.problemType}}</view>
+          </view>
+        </view>
+      </mp-slideview>
+    </view>
+  </view>
+  <!-- <view class='data-loading' hidden='{{hidden}}'>  
+    数据加载中...  
+  </view>  -->
+</view>

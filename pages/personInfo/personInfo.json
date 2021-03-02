@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-icon": "../miniprogram_npm/weui-miniprogram/icon/icon"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#199ED8",
+  "navigationBarTitleText": "我的",
+  "navigationBarTextStyle": "white"
+}

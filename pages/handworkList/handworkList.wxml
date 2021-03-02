@@ -1,0 +1,4 @@
+<!--pages/handworkList/handworkList.wxml-->
+<view class="list-wrap">
+  <text wx:for="{{list}}" wx:key="cardId" class="list-item">日期：<text class="txt-sty">{{item.fillTime}}</text>，手工单数：<text class="txt-sty">{{item.cardCount}}</text></text>
+</view>

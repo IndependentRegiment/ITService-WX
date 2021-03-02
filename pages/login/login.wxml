@@ -1,0 +1,96 @@
+<view>
+  <view class="title">身份验证</view>
+  <view class="content">
+    <view class="item">
+      <view class="item-top">
+        <span class="key">*</span>
+        姓名：
+      </view>
+      <view class="item-bottom">
+        <input type="text" class="item-ipt" data-name='postData.userName' value='{{postData.userName}}' bindinput="handleInput" />
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="item-top">
+        <span class="key">*</span>
+        电话：
+      </view>
+      <view class="item-bottom">
+        <input type="number" class="item-ipt" data-name='postData.phone' value="{{postData.phone}}" bindinput="handleInput" />
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="item-top">
+        <span class="key">*</span>
+        邮箱：
+      </view>
+      <view class="item-bottom">
+        <input type="text" class="item-ipt" data-name='postData.email' value="{{postData.email}}" bindinput="handleInput"/>
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="item-top">
+        <span class="key" style="color: #fff">*</span>
+        工号：
+      </view>
+      <view class="item-bottom">
+        <input type="text" class="item-ipt" data-name='postData.userId' value="{{postData.userId}}" bindinput="handleInput"/>
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="item-top">
+        <span class="key">*</span>
+        公司：
+      </view>
+      <view class="item-bottom">
+         <picker mode="selector" bindchange="bindCompanyChange"
+          value="{{companyIndex}}" range="{{company}}" range-key="deptName">
+          <view class="picker">
+            {{company[companyIndex].deptName}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="item-top">
+        <span class="key">*</span>
+        部门：
+      </view>
+      <view class="item-bottom">
+         <picker mode="selector" bindchange="bindDeptChange"
+          value="{{deptIndex}}" range="{{dept}}" range-key="deptName">
+          <view class="picker">
+            {{dept[deptIndex].deptName}} 
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="item" hidden="{{showChild}}">
+      <view class="item-top">
+        <span class="key">*</span>
+        二级部门：
+      </view>
+      <view class="item-bottom">
+         <picker mode="selector" bindchange="bindDeptChildChange"
+          value="{{deptChildIndex}}" range="{{deptChild}}" range-key="deptName">
+          <view class="picker">
+            {{deptChild[deptChildIndex].deptName}} 
+          </view>
+        </picker>
+      </view>
+    </view>    
+
+    <view class="item">
+      <view class="item-bottom">
+        <view class="btn" bindtap="submit">验证</view>
+      </view>
+    </view>
+    
+  </view>
+</view>

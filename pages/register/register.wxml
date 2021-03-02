@@ -1,0 +1,67 @@
+<!--pages/register/register.wxml-->
+<view class="body">
+  <!-- 标题 -->
+  <!-- <view class="title">
+    <h1 class="htitle">在岗员工健康登记</h1>
+    <view class="description" wx:for="{{description}}" wx:key="">
+      <view>
+        {{item}}
+      </view>
+    </view>
+  </view> -->
+  <!-- 内容 -->
+  <view class="content">
+    <view style='margin-top:6%'>
+      <view class='input input1'><span class="spanColor">*</span>1.姓名</view>
+      <view class='input input2'><input type='text' bindinput='getUserName' value='{{isShowContent.UserName}}'> </input>
+      </view>
+    </view>
+    <view style='margin-top:6%'>
+      <view class='input input1'><span class="spanColor"></span>2.工号</view>
+      <view class='input input2'><input type='text' bindinput='getUserId' value='{{isShowContent.UserId}}'>> </input>
+      </view>
+    </view>
+    <view style='margin-top:6%'>
+      <view class='input input1'><span class="spanColor">*</span>3.公司</view>
+      <picker bindchange="bindPickerChange" value="{{index}}" wx:key="{{index}}" range="{{companyList}}">
+        <view class="picker input" style="padding:8px">
+          <view class='list-msg2'>
+            <text>{{company}}</text>
+            <icon class="icon ./iconfont/icon-xiasanjiaoxing:before"></icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view style='margin-top:6%'>
+      <view class='input input1'><span class="spanColor">*</span>4.部门</view>
+      <picker bindchange="bindPickerChange2" value="{{index}}" wx:key="{{index}}" range="{{selectList}}">
+        <view class="picker input" style="padding:8px">
+          <view class='list-msg2'>
+            <text>{{depart}}</text>
+            <icon class="icon ./iconfont/icon-xiasanjiaoxing:before"></icon>
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view style='margin-top:6%'>
+      <view class='input input1'><span class="spanColor">*</span>5.体温</view>
+      <view class='input input2'><input type='digit' bindinput='getTemperature' disabled='{{disabled}}'> </input></view>
+    </view>
+    <!-- <view style='margin-top:6%'>
+        <view class='input input1'><span class="spanColor"></span>6.办公方式</view>
+        <view class='input input2'>
+          <view class='list-msg2' bindtap='bindShowWorkType'>
+              <text>{{workType}}</text>
+              <icon class="icon ./iconfont/icon-xiasanjiaoxing:before"></icon>
+          </view>
+          <view class="select_box2" wx:if="{{selectWorkType}}">
+              <view class="select_one" bindtap="getWorkType" wx:for="{{workTypeList}}" data-name="{{item}}">{{item}}</view>
+          </view>
+        </view>
+      </view> -->
+  </view>
+  <!-- 提交 -->
+  <view class='sub'>
+    <button class='blue' bindtap="submit" disabled="{{disable}}">提交</button>
+  </view>
+</view>

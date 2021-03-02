@@ -1,0 +1,100 @@
+.perdonInfo-wrap {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(244, 244, 244, 100);
+}
+
+/* 页面顶部 */
+.header-common {
+  width: 710rpx;
+  height: 280rpx;
+  padding-top:50rpx;
+  box-sizing: border-box;
+  line-height: 40rpx;
+  background-color:white;
+  margin:20rpx auto 0;
+  border-radius: 10rpx;
+}
+.header-img{
+  display: block;
+  width:150rpx;
+  height:150rpx;
+  overflow: hidden;
+  margin:0 auto 20rpx;
+}
+.header-img image{
+  width: 120rpx;
+  height:120rpx;
+}
+/* 列表部分 */
+.perdonInfo-list {
+  margin-top: 30rpx;
+}
+
+.list-info {
+  margin: 0 auto;
+  width: 100%;
+  height: 120rpx;
+  background-color: white;
+  border-bottom: 1px solid rgba(232, 232, 232, 100);
+  display: flex;
+}
+
+.list-info-img {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx 36rpx;
+}
+.list-info-img image{
+  margin-top:15rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.list-info-title {
+  line-height: 120rpx;
+  color: rgba(79, 79, 79, 100);
+  font-size: 34rpx;
+  font-family: PingFangSC-regular;
+}
+.list-info-count{
+  width: 40rpx;
+height: 40rpx;
+background-color: rgba(242, 0, 0, 100);
+text-align: center;
+color: white;
+font-size: 28rpx;
+line-height: 40rpx;
+border-radius: 50%;
+margin-left: auto;
+margin-top:40rpx;
+margin-right: 20rpx;
+}
+/* 悬浮窗部分 */
+.movable-area{
+  pointer-events:none;
+  /* 这个属性设置为none,让所有事件穿透过去 */
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+ }
+ .movable-view{ 
+  pointer-events:auto;
+  /* 重设为auto,覆盖父属性设置 */
+  height: 100rpx;
+  width: 100rpx;
+  background: #199ED8;
+  border-radius: 50%;
+  box-shadow: 0 4rpx 10rpx #646464;
+ }
+ .icon-add{
+   line-height: 90rpx;
+   font-weight: 800;
+ }

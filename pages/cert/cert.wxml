@@ -1,0 +1,37 @@
+<!--pages/cert/cert.wxml-->
+<view class="body">
+  <!-- 标题 -->
+  <view class="title">
+    <h1 class="htitle">账号认证</h1>
+    <view class="description" wx:for="{{description}}" wx:key="">
+      <view>
+        {{item}}
+      </view>
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class="content">
+      <view style='margin-top:6%'>
+        <view class='input input1'><span class="spanColor">*</span>姓名</view>
+        <view class='input input2'><input  type='text' bindinput='getUserName' value='{{isShowContent.UserName}}'>> </input></view>
+      </view>
+      <!-- <view style='margin-top:6%'>
+        <view class='input input1'><span class="spanColor">*</span>2.部门</view>
+        <view class='input input2'>
+          <view class='list-msg2' bindtap='bindShowMsg'>
+              <text>{{depart}}</text>
+              <icon class="icon ./iconfont/icon-xiasanjiaoxing:before"></icon>
+          </view>
+          <view class="select_box" wx:if="{{select}}">
+              <view class="select_one" bindtap="getDepartment" wx:for="{{selectList}}" data-name="{{item}}">{{item}}</view>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  <!-- 提交 -->
+  <view>
+    <button class='blue' bindtap="submit">立即认证</button>
+  </view>
+</view>
+
+

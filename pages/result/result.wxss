@@ -1,0 +1,38 @@
+/* pages/result/result.wxss */
+.body {
+  width: 100%;
+  height: 20em;
+  line-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+icon {
+  font-size: 5em !important;
+  text-align: center;
+}
+.block {
+  display: flex;
+  flex-direction: column;
+}
+.block view{
+  margin-top: 2em;
+  font-size: 2em;
+  margin-left: -0.2em !important;
+}
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color: #FFC605;
+}
+button {
+  width: 6em !important;
+  background: #1ea0fa;
+  color: white;
+}

@@ -1,0 +1,180 @@
+<!--pages/create/create.wxml-->
+<view class="main" hidden="{{ true }}">
+  <view class="text" style="margin-top: 10rpx"><span class="dot">*</span>紧急度:
+    <view class="urgent">
+      <block wx:for="{{stars}}" wx:key="index">
+        <image class="star-image" style="left: {{item*100}}rpx" src="{{key > item ?selectedSrc : normalSrc}}">
+          <!-- <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view> -->
+          <view class="item" data-key="{{item+1}}" bindtap="selectRight"></view>
+        </image>
+      </block>
+    </view>
+  </view>
+  <view class="text">
+    <span class="dot">*</span>
+    故障类型:
+    <view class='input inputView'>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange"
+        value="{{multiIndex}}" range="{{multiArray}}" range-key="typeName">
+        <view class="picker">
+          {{multiArray[0][multiIndex[0]].typeName}}/{{multiArray[1][multiIndex[1]].typeName}}
+        </view>
+      </picker>
+    </view>
+
+  </view>
+  <!-- hidden="{{ show }}" -->
+  <view class="isAdmin" hidden="{{ true }}">
+    <view class="text"><span class="dot">*</span>
+      姓名: <view class="inputView"> <input class="input" data-name='resData.userName' value='{{resData.userName}}'
+          bindinput="handleInput" /></view>
+    </view>
+    <!-- <view class="text">
+      <span class="dot">*</span>
+      部门:
+      <view class='input inputView'>
+        <picker mode="selector" bindchange="bindDeptChange" value="{{deptList[deptIndex].deptName}}"
+          range="{{deptList}}" range-key='deptName'>
+          <view class='picker'><input disabled="disabled" value='{{department}}' /></view>
+        </picker>
+      </view>
+    </view> -->
+    <view class="text">
+      <span class="dot">*</span>
+      部门:
+      <view class='input inputView'>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange1" bindcolumnchange="bindMultiPickerColumnChange1"
+          value="{{multiIndex}}" range="{{multiArray1}}" range-key="deptName">
+          <view class="picker">
+            {{multiArray1[1][multiIndex1[1]].deptName}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- <view class="text"><span class="dot">*</span>
+      电话: <view class="inputView"> <input class="input" data-name='resData.phone' value='{{resData.phone}}'
+          bindinput="handleInput" type="number" /></view>
+    </view> -->
+  </view>
+  <view class="btn"><button type="primary"
+      style="background-color:#199ED8;width: 100%;border-radius: 0;height:50px;text-align:center;" bindtap="submit"
+      class="submitBtn">提交</button></view>
+</view>
+<view>
+  <view style="width:90%;padding-left:32rpx;color:#7F7F7F; font-size: 28rpx; margin:10rpx 0rpx;">故障填写</view>
+  <view class="remark-item">
+    <view class="weui-cell weui-cell">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">紧急度</view>
+      <view class="urgent weui-cell__bd weui-cell__bd">
+        <block wx:for="{{stars}}" wx:key="index">
+          <image class="star-image" style="left: {{item*80}}rpx" src="{{key > item ?selectedSrc : normalSrc}}">
+            <!-- <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view> -->
+            <view class="item" data-key="{{item+1}}" bindtap="selectRight"></view>
+          </image>
+        </block>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">故障类型</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange"
+          value="{{multiIndex}}" range="{{multiArray}}" range-key="typeName" style="position: relative;">
+          <view class="picker weui-input">
+            {{multiArray[0][multiIndex[0]].typeName}}
+          </view>
+          <image src="../../assets/icon/down.png" class="down" bindtap="bindMultiPickerChange"></image>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">联系电话</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <input data-name='resData.phone' value='{{resData.phone}}' bindinput="handleInput" type="number"
+          placeholder="请输入电话" style="float:left;padding-top:16rpx" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell" hidden="{{showType}}">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">具体类型</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <view class="weui-input" style="over-flow:hidden;float:left;padding-top:16rpx">
+          {{multiArray[1][multiIndex[1]].typeName}}
+        </view>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell" hidden="{{showTime}}" >
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">预约时间</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <picker mode="time" value="{{time}}" start="08:00" end="19:59" bindchange="bindTimeChange"
+          style="position: relative;">
+          <view class="picker weui-input">
+            {{time}}<view style="margin-left:30rpx">--</view> 
+          </view>
+        </picker>        
+        <picker mode="time" value="{{timeEnd}}" start="{{time}}" end="20:30" bindchange="bindTimeChange1"
+          style="position: relative;">
+          <view class="weui-input pickerEnd">
+            {{timeEnd}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell" hidden="{{show}}">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">姓名</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <input type="text" placeholder="请输入姓名" data-name='resData.userName' value='{{resData.userName}}'
+          bindinput="handleInput" style="float:left;padding-top:16rpx" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell" hidden="{{show}}">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">部门</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange1" bindcolumnchange="bindMultiPickerColumnChange1"
+          value="{{multiIndex}}" range="{{multiArray1}}" range-key="deptName" style="position: relative;">
+          <view class="picker weui-input">
+            {{multiArray1[1][multiIndex1[1]].deptName}}
+          </view>
+          <image src="../../assets/icon/down.png" class="down" bindtap="bindMultiPickerChange"></image>
+        </picker>
+      </view>
+    </view>
+    <!-- <view class="weui-cell weui-cell" hidden="{{show}}">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">电话</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <input data-name='resData.phone' value='{{resData.phone}}' bindinput="handleInput" type="number"
+          placeholder="请输入电话" style="float:left;padding-top:16rpx" />
+      </view>
+    </view> -->
+    <view class="weui-cell weui-cell" hidden="{{show}}">
+      <view class="weui-cell__hd weui-cell__hd" style="width:30%">指定工程师</view>
+      <view class="weui-cell__bd weui-cell__bd" style="width:60%;">
+        <picker mode="selector" bindchange="bindNameChange" value="{{nameList[nameIndex].userName}}"
+          range="{{nameList}}" range-key='userName'>
+          <view class=" weui-input" style="padding-top: 9px;">
+            {{name}}
+          </view>
+          <!-- <view class='picker'><input disabled="disabled" value='{{name}}' /></view> -->
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view style="width:90%;padding-left:32rpx;color:#7F7F7F; font-size: 28rpx; margin-top:20rpx;margin-bottom: 14rpx">故障描述
+  </view>
+  <view class="remark-item ">
+    <view class=" remark"><textarea data-name='resData.description' value='{{resData.description}}' class="weui-input"
+        placeholder="请输入详细故障说明" auto-height bindinput='count'></textarea></view>
+    <view class="count">{{length}}/500 <image src="../../assets/icon/radio.png" style="height:30rpx;width:30rpx">
+      </image>
+    </view>
+  </view>
+  <view style="width:90%;padding-left:32rpx;color:#7F7F7F; font-size: 28rpx; margin-top:20rpx;margin-bottom: 14rpx">温馨提示
+  </view>
+  <view class="tips">
+    <view class="tip">1.本程序主要提供以下服务：会议支持，邮件服务，密码重置，软硬件安装及故障处理事件；</view>
+    <view class="tip">2.IT权限申请（如电脑，网络，业务系统等）请在OA系统-IT模块中提交IT服务申请单；</view>
+    <view class="tip">3.如需人工服务，请拨打热线电话：808008。</view>
+  </view>
+  <view class="btn"><button type="primary"
+      style="background-color:#199ED8;width: 100%;border-radius: 0;height:50px;text-align:center;" bindtap="submit" class="submitBtn">提交</button></view>
+</view>

@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view class="index-wrap">
+  <!-- 页面 -->
+  <swiper class="slides" autoplay="true">
+    <swiper-item item-id="">
+      <!-- <image src="https://blog.shenjq.top/static/img/banner1.jpg" mode="aspectFill"/> -->
+      <image src="https://itservice.chint-eletech.com:8085/static/icon/index.png" mode="aspectFill" />
+    </swiper-item>
+    <!-- <swiper-item item-id="">
+<image src="https://blog.shenjq.top/static/img/banner2.jpg" mode="aspectFill"/>
+</swiper-item> -->
+  </swiper>
+
+  <view class="grids">
+    <!-- <view class="item" data-name="visit" bindtap='getCurrentIndex' data-z="0">
+      <image src="/assets/icon/grid3.png" />
+      <text>体温登记</text>
+    </view> -->
+    <view class="item" data-name="express" bindtap='getCurrentIndex' data-z="2">
+      <image src="/assets/icon/help.png" />
+      <text>IT服务中心</text>
+    </view>
+    <view class="item"  style="display:{{roleName==='工程师'?'flex':'none'}}"  data-name="express" bindtap='getCurrentIndex' data-z="3">
+      <image src="/assets/icon/grid2.png" />
+      <text>手工单登记</text>
+    </view>
+    <!-- <view class="item" data-name="visit" bindtap='getCurrentIndex' data-z="4">
+      <view style="width:70rpx;height:70rpx;"> 
+        <image style="width:65rpx;height:55rpx;padding-top:2px" src="/assets/tabs/grid4.png" />
+      </view>
+      <text>防疫健康登记</text>
+    </view> -->
+    <!-- <button bindtap="dingyue"></button> -->
+  </view>
+</view>

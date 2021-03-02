@@ -1,0 +1,31 @@
+<!--pages/personInfo/personInfo.wxml-->
+<view class="perdonInfo-wrap">
+  <!-- 头部样式 -->
+  <view class="header-common">
+    <view class="header-img">
+      <image src="../../assets/icon/serve.png"></image>
+    </view>
+      <view class="header-info">
+        <p class="info-tel">紧急电话：866902</p>
+      </view>
+      
+  </view>
+  <!-- 列表部分 -->
+  <view class="perdonInfo-list">
+    <view class="list-info" bindtap="getList" data-title="{{item.title}}" data-count="{{item.count}}" wx:key="index" wx:for="{{personInfo}}">
+      <view class="list-info-img">
+        <image src="{{(item.title==='已创建'||item.title==='已代建')?icon.add:item.title==='已评价'?icon.evaluate:item.title==='协办中'?icon.together:item.title==='待处理'?icon.pending:item.title==='已处理'?icon.complete:icon.handle}}">
+        </image>
+      </view>
+      <view class="list-info-title">{{item.title}}</view>
+      <view wx:if="{{item.count>0}}" class="list-info-count">{{item.count}}</view>
+    </view>
+  </view>
+  <!-- 悬浮按钮 -->
+  <movable-area class="movable-area" style="display:{{userRole === '工程师'?'none':'block'}}">
+    <movable-view x="600rpx" y="750rpx" animation="{{false}}" class="movable-view" direction='all'
+      catchtap="createTask">
+      <mp-icon class="icon-add" icon="add" color="white" size="{{30}}"></mp-icon>
+    </movable-view>
+  </movable-area>
+</view>

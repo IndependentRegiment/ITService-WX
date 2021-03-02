@@ -1,0 +1,121 @@
+/* pages/agentConstruct/agentConstruct.wxss */
+@import "../../main.wxss";
+@import "../../icon.wxss";
+page{
+  background-color: #f3f3f3;
+}
+/* .list-container{
+  position: fixed;
+  top:0;
+  left: 0;
+  width:100vw;
+  height: 100vh;
+  background-color: #f3f3f3;
+} */
+.list-items-wrap {
+  line-height: 120rpx;
+  text-align: left;
+  box-sizing: border-box;
+  background-color: white;
+  margin-top:30rpx;
+  border:none;
+  width:710rpx;
+  border-radius: 15rpx;
+  margin-left: 20rpx;
+}
+.list-items-item{
+  font-size: 28rpx;
+  line-height: 30rpx;
+  overflow: hidden;
+  padding:20rpx 20rpx 0;
+}
+.list-items-item .item-text{
+  float: left;
+  width: 50%;
+  text-align: left;
+  color: #464646;
+}
+.list-time-wrap{
+  padding:0 20rpx 20rpx;
+}
+.list-time{
+  font-size: 26rpx;
+  line-height: 30rpx;
+  color: #787878;
+  margin-top:15rpx;
+}
+
+.store-wrap{
+  width:100vw;
+  height:100vh;
+  position: fixed;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.2);
+  z-index: auto;
+  top: 0;
+}
+.store{
+  position: absolute;
+  width: 600rpx;
+  z-index: 9;
+  top:120rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  box-shadow: 0 0 10rpx #ccc;
+  left: 50%;
+  margin-left: -300rpx;
+}
+.close-btn{
+  position: absolute;
+  right: 20rpx;
+  top:10rpx;
+  color: #464646;
+  font-size: 40rpx;
+}
+.star-image {
+  width: 100rpx;
+  height: 100rpx;
+  src: "/assets/tabs/home.jpg";
+}
+.pj-title{
+  display: block;
+  width: 100%;
+  color: #787878;
+  font-size: 34rpx;
+  text-align: center;
+  margin:30rpx 0 20rpx;
+}
+.pj-wrap{
+  position: static;
+  width: 540rpx;
+  padding-left: 50rpx;
+}
+.submit-btn{
+  display: block;
+  width: 200rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: white;
+  background-color: #5cb531;
+  text-align: center;
+  margin:30rpx auto;
+}
+.dhtext{
+  display: block;
+  width: 500rpx;
+  padding:20rpx;
+  font-size: 28rpx;
+  line-height: 32rpx;
+  color: #464646;
+  margin:15rpx auto;
+  border:1px solid #f1f1f1;
+}
+/* 数据加载样式 */
+.data-loading {  
+  height: 100rpx;  
+  line-height: 100rpx;  
+  background-color: #eee;  
+  text-align: center;  
+  font-size: 14px;  
+}
+

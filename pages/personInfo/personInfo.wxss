@@ -1,0 +1,127 @@
+.perdonInfo-wrap {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f7f5f6;
+}
+
+/* 页面顶部 */
+.header-common {
+  width: 100vw;
+  height: 200rpx;
+  line-height: 40rpx;
+  background-color: #199ED8;
+  position: relative;
+}
+
+.header-main {
+  width: 680rpx;
+  height: 260rpx;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  /* box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4); */
+  /* border: 1px solid rgba(255, 255, 255, 100); */
+  top: 40rpx;
+  left: 50%;
+  margin-left: -340rpx;
+  background-color: white;
+  position: absolute;
+  display: flex;
+}
+
+.header-img {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: antiquewhite;
+  margin-left: 54rpx;
+  margin-top: 50rpx;
+  overflow: hidden;
+}
+
+.select-wrap {
+  display: flex;
+}
+
+.info-title {
+  line-height: 56rpx;
+  height: 56rpx;
+  color: rgba(16, 16, 16, 100);
+  font-size: 40rpx;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  margin-top: 60rpx;
+  display: block;
+  width: 250rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: 50rpx;
+}
+
+.select-opt {
+  width: 100rpx;
+  margin-top: 75rpx;
+  margin-left: 44rpx;
+  font-size: 30rpx;
+}
+
+.info-tel {
+  line-height: 56rpx;
+  height: 56rpx;
+  color: rgba(111, 111, 111, 100);
+  font-size: 40rpx;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  margin-top: 24rpx;
+  display: block;
+  width: 368rpx;
+  margin-left: 50rpx;
+}
+
+/* 列表部分 */
+.perdonInfo-list {
+  margin-top: 135rpx;
+}
+
+.list-info {
+  margin: 0 auto;
+  width: 750rpx;
+  height: 110rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  background-color: white;
+  border-bottom: 1px solid #f7f5f6;
+  display: flex;
+}
+
+.list-info-img {
+  margin:15rpx 20rpx 0;
+}
+
+.list-info-img image {
+  margin-top: 15rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.list-info-title {
+  line-height: 110rpx;
+  color: rgb(47, 42, 42);
+  font-size: 36rpx;
+  font-family: PingFangSC-regular;
+}
+
+.list-info-count {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: rgba(242, 0, 0, 100);
+  text-align: center;
+  color: white;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-top: 40rpx;
+  margin-right: 20rpx;
+}

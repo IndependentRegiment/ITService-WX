@@ -1,0 +1,19 @@
+<view class="hand-wrap">
+  <view class="section">
+    <text>选择日期：</text>
+    <picker mode="date" value="{{date}}" start="{{dateTemp}}" end="{{datecur}}" bindchange="bindDateChange">
+      <view class="date-wrap">
+        {{datesel}}
+      </view>
+    </picker>
+    <text class="tag-txt">温馨提示：日期只能选择七天之内哦！</text>
+  </view>
+  <view>
+    <text>手工单数：</text>
+    <input class="date-wrap" value="{{count}}" type="number" bindinput='bindKeyInput' placeholder="请输入手工单数" />
+  </view>
+
+  <view class='sub'>
+    <button class='blue' bindtap="submit">保存</button>
+  </view>
+</view>
